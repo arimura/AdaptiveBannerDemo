@@ -6,6 +6,7 @@ target 'AdaptiveBannerDemo' do
   use_frameworks!
 
   # Pods for AdaptiveBannerDemo
+  pod 'Google-Mobile-Ads-SDK'
 
   target 'AdaptiveBannerDemoTests' do
     inherit! :search_paths
