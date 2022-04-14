@@ -12,26 +12,32 @@ class ViewController: UIViewController, GADBannerViewDelegate{
     
     var bannerView :GADBannerView!
     @IBOutlet weak var contentView: UIView!
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addLabels()
-        //        initAndLoadBanner()
-    }
-    
-    func addLabels(){
-        let label1 = createLabel(text: "I sit alone in my four-cornered room. Starin' at candles. Oh, that shit is on? Let me drop some shit like this here, real smooth.")
+        let label1 = createLabel(text: "We are about to study the idea of a computational process. Computational processes are abstract beings that inhabit computers. As they evolve, processes manipulate other abstract things called data. The evolution of a process is directed by a pattern of rules called a program. People create programs to direct processes. In effect, we conjure the spirits of the computer with our spells.")
         self.contentView.addSubview(label1)
         label1.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
         label1.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
         label1.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.8).isActive = true
         
-        let label2 = createLabel(text: "At night I can't sleep, I toss and turn Candlesticks in the dark, visions of bodies bein' burned Four walls just starin' at a *****. I'm paranoid, sleepin' with my finger on the trigger. My mother's always stressin' I ain't livin' right. But I ain't goin' out without a fight. See, every time my eyes close")
+        
+        let banner = createBanner()
+        self.bannerView = banner
+        self.contentView.addSubview(banner)
+        banner.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 10).isActive = true
+        banner.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
+        banner.widthAnchor.constraint(equalToConstant: 320).isActive = true
+        
+        let label2 = createLabel(text: "A computational process is indeed much like a sorcerer's idea of a spirit. It cannot be seen or touched. It is not composed of matter at all. However, it is very real. It can perform intellectual work. It can answer questions. It can affect the world by disbursing money at a bank or by controlling a robot arm in a factory. The programs we use to conjure processes are like a sorcerer's spells. They are carefully composed from symbolic expressions in arcane and esoteric programming languages that prescribe the tasks we want our processes to perform.")
         self.contentView.addSubview(label2)
-        label2.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 10).isActive = true
+        label2.topAnchor.constraint(equalTo: banner.bottomAnchor, constant: 10).isActive = true
         label2.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.8).isActive = true
         label2.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
+        
+        let request = GADRequest()
+        bannerView.load(request)
     }
     
     func createLabel(text: String) -> UILabel{
@@ -44,7 +50,7 @@ class ViewController: UIViewController, GADBannerViewDelegate{
         return label
     }
     
-    func initAndLoadBanner(){
+    func createBanner() -> GADBannerView {
         // Step 1: Create an inline adaptive banner ad size. This size is used to
         // request your adaptive banner. You can pass in the width of the device, or set
         // your own width. This example sets a static width.
@@ -55,23 +61,11 @@ class ViewController: UIViewController, GADBannerViewDelegate{
         bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.translatesAutoresizingMaskIntoConstraints = false
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.bannerView = bannerView
-        
-        // Step 3: Load an ad.
-        let request = GADRequest()
-        bannerView.load(request)
-        
+        return bannerView
     }
     
     func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("bannerViewDidReceiveAd")
-        self.contentView.addSubview(bannerView)
-        bannerView.widthAnchor.constraint(equalToConstant: 320).isActive = true
-        bannerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        bannerView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
-        bannerView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
     }
     
     func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
