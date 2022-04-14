@@ -47,6 +47,9 @@
                             <constraint firstItem="Alx-cG-sG4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="x8R-7L-ChK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="5Mx-Bo-jYP" id="Lk7-df-zap"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -16,7 +16,32 @@ class ViewController: UIViewController, GADBannerViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        initAndLoadBanner()
+        addLabels()
+        //        initAndLoadBanner()
+    }
+    
+    func addLabels(){
+        let label1 = createLabel(text: "I sit alone in my four-cornered room. Starin' at candles. Oh, that shit is on? Let me drop some shit like this here, real smooth.")
+        self.contentView.addSubview(label1)
+        label1.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
+        label1.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
+        label1.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.8).isActive = true
+        
+        let label2 = createLabel(text: "At night I can't sleep, I toss and turn Candlesticks in the dark, visions of bodies bein' burned Four walls just starin' at a *****. I'm paranoid, sleepin' with my finger on the trigger. My mother's always stressin' I ain't livin' right. But I ain't goin' out without a fight. See, every time my eyes close")
+        self.contentView.addSubview(label2)
+        label2.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 10).isActive = true
+        label2.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.8).isActive = true
+        label2.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
+    }
+    
+    func createLabel(text: String) -> UILabel{
+        let label = UILabel()
+        label.text = text
+        label.numberOfLines = 0
+        label.sizeToFit()
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }
     
     func initAndLoadBanner(){
