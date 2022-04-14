@@ -10,9 +10,10 @@ import GoogleMobileAds
 
 class ViewController: UIViewController, GADBannerViewDelegate{
     
-    var bannerView :GADBannerView!
     @IBOutlet weak var contentView: UIView!
-   
+    var bannerView :GADBannerView!
+    var timer :Timer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,8 +37,10 @@ class ViewController: UIViewController, GADBannerViewDelegate{
         label2.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.8).isActive = true
         label2.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
         
-        let request = GADRequest()
-        bannerView.load(request)
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { Timer in
+            let request = GADRequest()
+            self.bannerView.load(request)
+        })
     }
     
     func createLabel(text: String) -> UILabel{
